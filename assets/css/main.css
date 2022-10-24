@@ -1,0 +1,47 @@
+nav .nav-link.active {
+    background-color: #ceebff28;
+}
+
+nav .nav-link:hover {
+    background-color: #ceebff41;
+}
+
+.frozen
+{
+    background-color: #cff4fc;
+    border-color: #badce3;
+}
+
+table {
+    color: #495057;
+}
+td, th { 
+    transition: 0.4s; 
+}
+
+table.table-cellhover tr td:hover { background: rgba(27, 27, 27, 0.3); transition: 0.1s; }
+
+
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.btn-primary{
+    background-color: #990033;
+    border-color: #990033;
+}
+
+.btn-primary:hover{
+    background-color: #780028;
+    border-color: #990033;
+}
+
+.btn-outline-primary{
+    color: #990033;
+    border-color: #990033;
+}
+
+.btn-outline-primary:hover{
+    background-color: #990033;
+    border-color: #990033;
+}
