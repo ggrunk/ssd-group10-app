@@ -25,7 +25,7 @@ jobs:
         env:
           runner: GitHub-hosted
         with:
-          php-version: 'php|7.4'
+          php-version: '7.4'
           tools: composer, phpunit
           extensions: mbstring,PDO,grpc,tokenizer,xml,json,ctype,fileinfo,openssl,bcmath, intl, curl, dom
           coverage: xdebug
