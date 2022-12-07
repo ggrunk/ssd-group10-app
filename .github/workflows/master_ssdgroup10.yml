@@ -18,6 +18,8 @@ jobs:
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
+        env:
+          runner: self-hosted
         with:
           php-version: 'php|7.4'
 
