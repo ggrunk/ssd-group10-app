@@ -22,6 +22,8 @@ jobs:
           runner: self-hosted
         with:
           php-version: 'php|7.4'
+          tools: composer, phpunit
+          extensions: mbstring,PDO,grpc,tokenizer,xml,json,ctype,fileinfo,openssl,bcmath
 
       - name: Check if composer.json exists
         id: check_files
