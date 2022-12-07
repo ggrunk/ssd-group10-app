@@ -13,7 +13,6 @@ jobs:
   build:
     strategy:
       matrix:
-        operating-system: [ubuntu-latest, ubuntu-16.04, ubuntu-18.04, ubuntu-20.04]
         php-versions: ['7.4']
     runs-on: ubuntu-latest
 
@@ -23,7 +22,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         env:
-          runner: GitHub-hosted
+          runner: self-hosted
         with:
           php-version: 'php|7.4'
           tools: composer, phpunit
