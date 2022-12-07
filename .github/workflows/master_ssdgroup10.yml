@@ -22,7 +22,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         env:
-          runner: self-hosted
+          runner: GitHub-hosted
         with:
           php-version: 'php|7.4'
           tools: composer, phpunit
