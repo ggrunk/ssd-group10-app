@@ -3,9 +3,7 @@
     <div class="text-center">
         <img class="img-fluid col-md-5" src="<?= assetUrl() ?>/img/mc-logo.png">
         <?php 
-        echo '<script>console.log("isset($_SERVER[\'CI_ENV\']): '.(isset($_SERVER['CI_ENV']) ? 'true' : 'false').'");</script>';
-        echo '<script>console.log("ENVIRONMENT: '.ENVIRONMENT.'" );</script>';
-        echo '<script>console.log("getenv(\'CI_ENV\'): '.getenv('CI_ENV').'" );</script>';
+        echo '<script>console.log("env: '.ENVIRONMENT.'" );</script>';
         if(ENVIRONMENT !== 'production'){
             echo '<p class="text-muted">(dev)</p>';
         } else {
