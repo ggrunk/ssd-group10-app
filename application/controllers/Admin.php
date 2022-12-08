@@ -51,9 +51,10 @@ class Admin extends CI_Controller {
 
   public function index()
   {
+    $this->load->helper('security');
     $this->load->library('form_validation');
     $this->load->model('model_db');
-    $this->TPL['users_table'] = $this->model_db->get_users();
+    $this->TPL['users_table'] = $this->security->xss_clean($this->model_db->get_users());
     $this->TPL['msg'] = '';
 
     $this->template->show('admin', $this->TPL);
