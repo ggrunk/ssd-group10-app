@@ -71,15 +71,18 @@ class Login extends CI_Controller {
   
   private function formValidationSetRules()
   {
-    $this->form_validation->set_rules('username', 'Username', 'required|max_length[255]|is_unique[users.username]', array(
-          'required' => 'You must provide a %s.',
-          'max_length' => '%s is too long (max 255 characters)',
-          'is_unique' => 'A user with that username already exists!'
-        ) );
-    $this->form_validation->set_rules('password', 'Password', 'required|max_length[255]', array(
-          'required' => 'You must provide a %s.',
-          'max_length' => '%s is too long (max 255 characters)'
-        ) );
+    $this->form_validation->set_rules('username', 'Username', 'required|min_length[8]|max_length[20]|is_unique[users.username]|alpha_dash', array(
+      'required' => 'You must provide a %s.',
+      'alpha_dash' => '%s may only contain letters, numbers, dashes, or underscores',
+      'min_length' => '%s is too short (must be at least 8 characters)',
+      'max_length' => '%s is too long (max 20 characters)',
+      'is_unique' => 'A user with that username already exists!'
+    ) );
+    $this->form_validation->set_rules('password', 'Password', 'required|min_length[8]|max_length[25]', array(
+      'required' => 'You must provide a %s.',
+      'min_length' => '%s is too short (must be at least 8 characters)',
+      'max_length' => '%s is too long (max 25 characters)',
+    ) );
   }
 
 }

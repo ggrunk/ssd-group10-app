@@ -79,7 +79,7 @@ $db['default'] = array(
 	'username' => getenv('secret_username') ? getenv('secret_username') : 'root',
 	'password' => getenv('secret_password') ? getenv('secret_password') : '',
 	'database' => getenv('secret_database') ? getenv('secret_database') : 'group08_mohawkqc_db',
-	'dbdriver' => getenv('secret_dbdriver') ? getenv('secret_dbdriver') : 'sqlsrv',
+	'dbdriver' => getenv('secret_dbdriver') ? getenv('secret_dbdriver') : 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),

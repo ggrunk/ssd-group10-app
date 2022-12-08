@@ -17,7 +17,7 @@ class Admin extends CI_Controller {
   {
     $this->load->model('model_db');
     $this->TPL['result'] = $this->model_db->delete($id);
-    $this->TPL['users_table'] = $this->model_db->get_users();
+    $this->TPL['users_table'] = $this->security->xss_clean($this->model_db->get_users());
     $this->template->show('admin', $this->TPL);
   }
 
@@ -25,7 +25,7 @@ class Admin extends CI_Controller {
   {
     $this->load->model('model_db');
     $this->TPL['result'] = $this->model_db->freeze($id);
-    $this->TPL['users_table'] = $this->model_db->get_users();
+    $this->TPL['users_table'] = $this->security->xss_clean($this->model_db->get_users());
     $this->template->show('admin', $this->TPL);
   }
 
@@ -36,13 +36,13 @@ class Admin extends CI_Controller {
     $this->load->model('model_db');
 
     if ($this->form_validation->run() == FALSE) {
-      $this->TPL['users_table'] = $this->model_db->get_users();
+      $this->TPL['users_table'] = $this->security->xss_clean($this->model_db->get_users());
       $this->template->show('admin', $this->TPL);
     } else {
       $this->TPL['result']=$this->model_db->create_user( $this->input->post('username'),
                                                          $this->input->post('password'),
                                                          $this->input->post('accesslevel'));
-      $this->TPL['users_table'] = $this->model_db->get_users();
+      $this->TPL['users_table'] = $this->security->xss_clean($this->model_db->get_users());
       // $this->form_validation->clear_field_data();
       $this->template->show('admin', $this->TPL);
     }
@@ -62,14 +62,17 @@ class Admin extends CI_Controller {
 
   private function formValidationSetRules()
   {
-    $this->form_validation->set_rules('username', 'Username', 'required|max_length[255]|is_unique[users.username]', array(
+    $this->form_validation->set_rules('username', 'Username', 'required|min_length[8]|max_length[20]|is_unique[users.username]|alpha_dash', array(
           'required' => 'You must provide a %s.',
-          'max_length' => '%s is too long (max 255 characters)',
+          'alpha_dash' => '%s may only contain letters, numbers, dashes, or underscores',
+          'min_length' => '%s is too short (must be at least 8 characters)',
+          'max_length' => '%s is too long (max 20 characters)',
           'is_unique' => 'A user with that username already exists!'
         ) );
-    $this->form_validation->set_rules('password', 'Password', 'required|max_length[255]', array(
+    $this->form_validation->set_rules('password', 'Password', 'required|min_length[8]|max_length[25]', array(
           'required' => 'You must provide a %s.',
-          'max_length' => '%s is too long (max 255 characters)'
+          'min_length' => '%s is too short (must be at least 8 characters)',
+          'max_length' => '%s is too long (max 25 characters)',
         ) );
     $this->form_validation->set_rules('accesslevel', 'Access level', 'callback_checkAccessLevel' );
   }

@@ -29,13 +29,14 @@ class Survey extends CI_Controller {
     
     $this->load->model('model_db');
     $this->TPL['survey_questions'] = $this->model_db->get_survey_questions();
+    $this->TPL['survey_courses'] = $this->model_db->get_courses();
     
     foreach ($this->TPL['survey_questions'] as $q) {
       $this->formValidationSetRules($q['id'], $q['total']);
     }
-    $this->form_validation->set_rules('survey-course', 'Course', 'required');
-    $this->form_validation->set_rules('survey-year', 'Year', 'required');
-    $this->form_validation->set_rules('survey-term', 'Term', 'required');
+    $this->form_validation->set_rules('survey-course', 'Course', 'required|integer|max_length[4]');
+    $this->form_validation->set_rules('survey-year', 'Year', 'required|integer|max_length[4]');
+    $this->form_validation->set_rules('survey-term', 'Term', 'required|alpha|max_length[6]');
 
     if ($this->form_validation->run() == FALSE) { // Form validation failed
       $this->template->show('survey', $this->TPL);
@@ -60,8 +61,9 @@ class Survey extends CI_Controller {
   }
   private function formValidationSetRules($id, $total)
   {
-    $this->form_validation->set_rules($id, 'question '.$id, 'required', array(
-          'required' => 'You must answer %s.'
+    $this->form_validation->set_rules($id, 'question '.$id, array('required','integer'), array(
+          'required' => 'You must answer %s.',
+          'integer' => 'Invalid input for %s.',
         ));
   }
 }
