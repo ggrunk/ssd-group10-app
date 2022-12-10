@@ -34,7 +34,6 @@
             </select>
         </div>
     </div>
-    <!-- <p class="text-muted">This page is only accessible by Instructors (and admins)</p> -->
     <div class="col-lg-9">
 
         <?php if (isset($message) || (validation_errors('', ''))!='' ) { ?>

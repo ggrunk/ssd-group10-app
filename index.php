@@ -53,7 +53,8 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-	define('ENVIRONMENT', getenv('CI_ENV') ? getenv('CI_ENV') : 'development');
+	define('ENVIRONMENT', getenv('CI_ENV') ? getenv('CI_ENV') : 'production'); 
+	// App is set to production mode by default if no environment variable is found
 
 /*
  *---------------------------------------------------------------

@@ -138,21 +138,6 @@ class Model_db extends CI_Model {
         }else{
             return 0;
         }
-        
-        
-        
-    }
-
-    public function reset(){
-        $this->db->empty_table('users');
-        $this->db->query("INSERT INTO users (user_id, username, password, accesslevel, frozen) VALUES
-                        (1, 'mem1', 'mem1', 'member', 'N'),
-                        (2, 'mem2', 'mem2', 'member', 'Y'),
-                        (3, 'edit1', 'edit1', 'editor', 'N'),
-                        (4, 'edit2', 'edit2', 'editor', 'N'),
-                        (5, 'admin1', 'admin1', 'admin', 'N'),
-                        (6, 'admin2', 'admin2', 'admin', 'Y');"
-        );
     }
 
 }
